@@ -23,5 +23,6 @@ COPY --from=builder /usr/local/lib/python3.11/site-packages /usr/local/lib/pytho
 COPY --from=builder /usr/local/bin /usr/local/bin
 
 # Copy only application code (changes frequently - rebuilds instantly)
+COPY .env .
 COPY main.py .
 CMD ["python", "main.py"]
