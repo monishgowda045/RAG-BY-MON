@@ -39,7 +39,7 @@ jobs:
 
       - name: Run Container Test
         run: |
-          echo "What is RAG?" | docker run --rm -i \
+          echo "What is RAG?" | docker run --rm \
             -e OPENAI_API_KEY="${{ env.OPENAI_API_KEY }}" \
             monishgowda045/python-app:latest \
             python main.py
