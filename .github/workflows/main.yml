@@ -1,11 +1,29 @@
-name: My First Workflow
-on: [push] # Triggers on every push
+name: Build Project
+
+# This is the "detector" for code changes
+on:
+  push:
+    branches: [ "main" ]  # Triggers only when code is pushed to main
+  pull_request:
+    branches: [ "main" ]  # Also triggers when someone opens a PR to main
 
 jobs:
-  test-job:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Check out repository code
+      # 1. Pull the code from your repo into the runner
+      - name: Checkout code
         uses: actions/checkout@v4
-      - name: Run a greeting
-        run: echo "Hello, the workflow is running successfully!"
+
+      # 2. Set up your environment (Example: Node.js, Python, or Go)
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-speed: '20'
+
+      # 3. Run the actual build command
+      - name: Install and Build
+        run: |
+          npm install
+          npm run build
