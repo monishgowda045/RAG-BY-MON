@@ -1,11 +1,10 @@
-name: Build Project
+name: Build Project - Testing Branch
 
-# This is the "detector" for code changes
 on:
   push:
-    branches: [ "monishgowda-patch-1" ]  # Triggers only when code is pushed to main
+    branches: [ "monishgowda-patch-1" ]
   pull_request:
-    branches: [ "monishgowda-patch-1" ]  # Also triggers when someone opens a PR to main
+    branches: [ "monishgowda-patch-1" ]
 
 jobs:
   build:
@@ -16,13 +15,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2. Set up your environment (Example: Node.js, Python, or Go)
+      # 2. Set up Node.js environment
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-speed: '20'
+          node-version: '20'
 
-      # 3. Run the actual build command
+      # 3. Run the actual build commands
       - name: Install and Build
         run: |
           npm install
