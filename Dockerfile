@@ -24,5 +24,4 @@ COPY --from=builder /usr/local/bin /usr/local/bin
 
 # Copy only application code (changes frequently - rebuilds instantly)
 COPY main.py .
-
 CMD ["python", "main.py"]
