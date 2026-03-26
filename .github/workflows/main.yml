@@ -1,4 +1,4 @@
-name: Build Project - Testing Branch
+name: Build and Test Project
 
 on:
   push:
@@ -7,22 +7,24 @@ on:
     branches: [ "monishgowda-patch-1" ]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Pull the code from your repo into the runner
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2. Set up Node.js environment
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm' # This speeds up future runs by caching your dependencies
 
-      # 3. Run the actual build commands
-      - name: Install and Build
-        run: |
-          npm install
-          npm run build
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Tests
+        run: npm test  # This looks for a "test" script in your package.json
+
+      - name: Build Project
+        run: npm run build
