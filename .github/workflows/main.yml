@@ -47,6 +47,20 @@ jobs:
           tags: |
             monishgowda045/python-app:latest
             monishgowda045/python-app:${{ github.sha }}
+      # ... (Steps 1, 2, and 3 remain the same)
+
+      # 4. Verify by running the container (Smoke Test with API Key)
+      - name: Run Container Test
+        env:
+          # This pulls the secret from GitHub and makes it available to the shell
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          docker run --rm \
+            -e OPENAI_API_KEY="$OPENAI_API_KEY" \
+            monishgowda045/python-app:latest \
+            python main.py      
+
+            
 
       # 4. Verify by running the container (Optional Smoke Test)
       - name: Run Container Test
