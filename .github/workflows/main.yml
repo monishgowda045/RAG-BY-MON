@@ -3,9 +3,9 @@ name: Build Project
 # This is the "detector" for code changes
 on:
   push:
-    branches: [ "main" ]  # Triggers only when code is pushed to main
+    branches: [ "monishgowda-patch-1" ]  # Triggers only when code is pushed to main
   pull_request:
-    branches: [ "main" ]  # Also triggers when someone opens a PR to main
+    branches: [ "monishgowda-patch-1" ]  # Also triggers when someone opens a PR to main
 
 jobs:
   build:
